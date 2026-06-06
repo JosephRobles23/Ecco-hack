@@ -16,60 +16,6 @@ export interface User {
   created_at: string;
 }
 
-export interface Program {
-  id: string;
-  org_id: string;
-  name: string;
-  status: "active" | "paused" | "completed";
-  start_date: string | null;
-  end_date: string | null;
-  created_at: string;
-}
-
-export interface Activity {
-  id: string;
-  program_id: string;
-  org_id: string;
-  created_by: string;
-  source: "whatsapp" | "web";
-  description: string;
-  activity_date: string;
-  location: string | null;
-  raw_data: Record<string, any> | null;
-  created_at: string;
-}
-
-export interface BeneficiaryRecord {
-  id: string;
-  activity_id: string;
-  org_id: string;
-  count: number;
-  segment: string;
-  details: Record<string, any> | null;
-  created_at: string;
-}
-
-export interface MetricsConfig {
-  id: string;
-  program_id: string;
-  org_id: string;
-  metric_name: string;
-  metric_type: "count" | "percentage" | "currency" | "boolean";
-  unit: string;
-  is_kpi: boolean;
-  created_at: string;
-}
-
-export interface MetricValue {
-  id: string;
-  activity_id: string;
-  metric_config_id: string;
-  org_id: string;
-  value: number;
-  period_date: string;
-  created_at: string;
-}
-
 export interface Document {
   id: string;
   org_id: string;
@@ -87,24 +33,13 @@ export interface Document {
   created_at: string;
 }
 
-export interface Embedding {
-  id: number;
-  document_id: string;
-  org_id: string;
-  content: string;
-  metadata: Record<string, any>;
-  embedding: number[];
-  created_at: string;
-}
-
-export interface Report {
+export interface ConversationSession {
   id: string;
   org_id: string;
-  generated_by: string;
-  title: string;
-  report_type: "monthly" | "annual" | "donor" | "custom";
-  format: "pdf" | "docx" | "json";
-  storage_path: string;
-  parameters: Record<string, any>;
+  phone_number: string;
+  kapso_conversation_id: string;
+  user_id: string | null;
+  status: "active" | "ended";
+  last_active_at: string;
   created_at: string;
 }
